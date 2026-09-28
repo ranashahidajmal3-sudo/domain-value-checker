@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Domain Value Checker - SaaS Magia</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+<div class="min-h-screen flex items-center justify-center p-4">
+<div class="bg-white rounded-2xl shadow-xl p-8 text-center max-w-lg w-full">
+<h1 class="text-3xl font-bold mb-2">Domain Value Checker</h1>
+<p class="text-gray-500 mb-6">What is Your Website Actually Worth?</p>
+<div class="flex gap-2">
+<input id="domainInput" type="text" placeholder="example.com" class="flex-1 border-2 border-gray-200 rounded-xl px-4 py-3 outline-none">
+<button onclick="checkValue()" class="bg-black text-white px-6 py-3 rounded-xl font-bold">Check Value</button>
+</div>
+<div id="result" class="mt-6 hidden text-left bg-gray-50 p-4 rounded-xl"></div>
+</div>
+</div>
+<script>
+function checkValue(){
+ let d = document.getElementById('domainInput').value.toLowerCase().replace('https://','').replace('http://','').replace('www.','').split('/')[0];
+ if(!d.includes('.')){ alert('Please enter a valid domain'); return; }
+ let parts = d.split('.'); let tld = parts.pop(); let name = parts.join('');
+ let length = name.length;
+ let base = 1000;
+ if(length <= 3) base = 5000; else if(length <= 4) base = 3000; else if(length <= 6) base = 1500; else if(length <= 8) base = 800;
+ if(['com','net','org'].includes(tld)) base += 800;
+ let finalPrice = base + Math.floor(Math.random()*500) + 200;
+ document.getElementById('result').classList.remove('hidden');
+ document.getElementById('result').innerHTML = '<p><b>Domain:</b> '+d+'</p><p><b>Estimated Value:</b> $'+finalPrice.toLocaleString()+'</p><p><b>Length Score:</b> '+length+' letters</p><p><b>TLD Value:</b> '+tld+'</p><p><b>Brandability:</b> High</p>';
+}
+</script>
+</body>
+</html>
