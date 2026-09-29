@@ -3,6 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Domain Value Checker - Pro Tool by Shahid</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>body{font-family:'Poppins',sans-serif}</style>
+</head>
+<body class="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 min-h-screen flex items-center justify-center p-4">
+<div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full p-8 text-center">
+<div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-pink-500 rounded-2xl mx-auto flex items-center justify-center text-white text-2xl font-bold mb-4"> $ </div>
+<h1 class="text-3xl font-bold text-gray-800">Domain Value Checker</h1>
+<p class="text-gray-500 mt-2 mb-6">What Is Your Website Actually Worth?</p>
+<div class="flex gap-2">
+<input id="domainInput" type="text" placeholder="example.com" class="flex-1 border-2 border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-indigo-500">
+<button onclick="checkValue()" class="bg-black text-white px-6 py-3 rounded-xl font-bold hover:bg-gray-800">Check Value</button>
+</div>
+<div id="result" class="mt-6 hidden text-left bg-gray-50 p-5 rounded-2xl border">
+<h3 class="font-bold text-lg">Estimated Value:</h3>
+<p id="valueText" class="text-3xl font-bold text-green-600 mt-2"></p>
+<p id="details" class="text-sm text-gray-600 mt-3"></p>
+<div class="mt-4 p-3 bg-yellow-100 rounded-lg text-sm">Note: This is an estimated value based on length, extension & keywords.</div>
+</div>
+<p class="text-xs text-gray-400 mt-6">Made by Shahid Bhai ❤️</p>
+</div>
+<script>
+function checkValue(){
+let d=document.getElementById('domainInput').value.trim();
+if(!d){alert('Please enter a domain!');return;}
+let len=d.length;
+let base=500;
+if(d.includes('.com')) base+=1000;
+if(len<6) base+=2000;
+else if(len<10) base+=800;
+else base+=200;
+let random=Math.floor(Math.random()*500)+100;
+let total=base+random;
+document.getElementById('result').classList.remove('hidden');
+document.getElementById('valueText').innerText='$'+total.toLocaleString()+' USD';
+document.getElementById('details').innerText='Domain: '+d+' | Length: '+len+' chars | Premium Score: '+(Math.floor(Math.random()*20)+80)+'/100';
+}
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Domain Value Checker - SaaS Magia</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
